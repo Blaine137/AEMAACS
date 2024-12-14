@@ -1,0 +1,14 @@
+<div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.TestModel" data-sly-test="${model.textField}">
+    <p>${model.textField}</p>
+    <p>${model.dynamicField}</p>
+</div>
+<div>
+    <div id="servlet-results">
+        <!-- Dynamic content from the servlet will be inserted here -->
+    </div>
+</div>
+
+<!-- Include the client library -->
+<sly data-sly-use.clientlib="/libs/granite/sightly/templates/clientlib.html">
+    <sly data-sly-call="${clientlib.js @ categories='clientlib-servlet'}"></sly>
+</sly>
