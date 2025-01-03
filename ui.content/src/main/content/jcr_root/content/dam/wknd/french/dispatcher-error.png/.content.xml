@@ -2,15 +2,16 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:dam="http://www.day.com/dam/1.0" xmlns:tiff="http://ns.adobe.com/tiff/1.0/" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
     jcr:mixinTypes="[mix:referenceable]"
     jcr:primaryType="dam:Asset"
-    jcr:uuid="a53b0e74-d495-459a-b986-89089cfbe167">
+    jcr:uuid="15d26c8c-a9c9-44f4-bd1e-9b6973a5ed38">
     <jcr:content
         dam:assetState="processed"
-        jcr:lastModified="{Date}2025-01-03T14:20:28.729-05:00"
+        jcr:lastModified="{Date}2025-01-03T16:03:13.358-05:00"
         jcr:lastModifiedBy="admin"
         jcr:primaryType="dam:AssetContent">
         <metadata
+            cq:tags="[location/france]"
             dam:Bitsperpixel="{Long}32"
-            dam:extracted="{Date}2025-01-03T14:20:28.423-05:00"
+            dam:extracted="{Date}2025-01-03T16:03:12.847-05:00"
             dam:Fileformat="PNG"
             dam:MIMEtype="image/png"
             dam:Numberofimages="{Long}1"
@@ -28,7 +29,7 @@
             jcr:primaryType="nt:unstructured"
             tiff:ImageLength="{Long}155"
             tiff:ImageWidth="{Long}570"
-            defaultlocation="FRANCE"/>
+            defaultlocation="USA"/>
         <related jcr:primaryType="nt:unstructured"/>
     </jcr:content>
 </jcr:root>
