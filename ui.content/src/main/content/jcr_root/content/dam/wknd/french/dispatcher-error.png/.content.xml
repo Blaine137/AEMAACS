@@ -2,15 +2,15 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:dam="http://www.day.com/dam/1.0" xmlns:tiff="http://ns.adobe.com/tiff/1.0/" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:mix="http://www.jcp.org/jcr/mix/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:dc="http://purl.org/dc/elements/1.1/"
     jcr:mixinTypes="[mix:referenceable]"
     jcr:primaryType="dam:Asset"
-    jcr:uuid="dd38f12d-9522-4b90-ad24-f44d3f3219d3">
+    jcr:uuid="a53b0e74-d495-459a-b986-89089cfbe167">
     <jcr:content
         dam:assetState="processed"
-        jcr:lastModified="{Date}2025-01-02T16:09:05.635-05:00"
+        jcr:lastModified="{Date}2025-01-03T14:20:28.729-05:00"
         jcr:lastModifiedBy="admin"
         jcr:primaryType="dam:AssetContent">
         <metadata
             dam:Bitsperpixel="{Long}32"
-            dam:extracted="{Date}2025-01-02T16:09:05.409-05:00"
+            dam:extracted="{Date}2025-01-03T14:20:28.423-05:00"
             dam:Fileformat="PNG"
             dam:MIMEtype="image/png"
             dam:Numberofimages="{Long}1"
@@ -27,7 +27,8 @@
             jcr:mixinTypes="[cq:Taggable]"
             jcr:primaryType="nt:unstructured"
             tiff:ImageLength="{Long}155"
-            tiff:ImageWidth="{Long}570"/>
+            tiff:ImageWidth="{Long}570"
+            defaultlocation="FRANCE"/>
         <related jcr:primaryType="nt:unstructured"/>
     </jcr:content>
 </jcr:root>

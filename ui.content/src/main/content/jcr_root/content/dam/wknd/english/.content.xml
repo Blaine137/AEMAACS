@@ -6,6 +6,7 @@
         jcr:primaryType="nt:unstructured"
         jcr:title="English"
         metadataProfile="/conf/global/settings/dam/adminui-extension/metadataprofile/wknd-adventures-english"
+        metadataSchema="/conf/global/settings/dam/adminui-extension/metadataschema/png"
         sourcing="false">
         <folderThumbnail/>
     </jcr:content>
