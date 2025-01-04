@@ -5,6 +5,7 @@
     <filter root="/content/dam/wknd" mode="merge">
         <include pattern="/content/dam/wknd(/.*)?"/>
     </filter>
+    <filter root="/content/cq:tags/default/location" mode="merge"/>
     <filter root="/content/dam/wknd/asset.jpg" mode="merge"/>
     <filter root="/content/experience-fragments/wknd" mode="merge"/>
 </workspaceFilter>
