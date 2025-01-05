@@ -3,6 +3,8 @@
         "create path (sling:OrderedFolder) /content/dam/wknd",
         "create path (nt:unstructured) /content/dam/wknd/jcr:content",
         "set properties on /content/dam/wknd/jcr:content\n  set cq:conf{String} to /conf/wknd\n  set jcr:title{String} to \"WKND Sites Project\"\nend",
-        "create service user dam-read-only-service-user with path /home/users/system/wknd/serivce-users\n set ACL for dam-read-only-service-user\n    allow jcr:read on /content/dam/wknd\nend"
+        "create service user dam-read-only-service-user with path /home/users/system/wknd/serivce-users\n set ACL for dam-read-only-service-user\n    allow jcr:read,rep:write on /content/dam/wknd\nend",
+        "create group wknd-users-group with path /home/groups/wknd\nset ACL for wknd-users-group\nallow jcr:read,rep:write on /content/wknd\nallow jcr:read,rep:write on /apps/wknd\nallow jcr:read,rep:write on /conf/wknd\nallow jcr:read,rep:write on /home\nend",
+        "create user wknd-user with path /home/users/wknd/custom-users with password 12345\nadd wknd-user to group wknd-users-group"
     ]
 }
