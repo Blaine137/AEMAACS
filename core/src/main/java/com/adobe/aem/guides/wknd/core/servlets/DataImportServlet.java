@@ -99,53 +99,6 @@ public class DataImportServlet extends SlingAllMethodsServlet {
             LOGGER.info("after reading array");
         }
 
-//        try (ResourceResolver resourceResolver = ResourceResolverUtils.getServiceUserResolver(resourceResolverFactory, SERVICE_USER_NAME)) {
-//            Resource parentResource = resourceResolver.getResource("/data");
-//            if (parentResource == null) {
-//                LOGGER.info("parent resource is not null!");
-//                response.setStatus(SlingHttpServletResponse.SC_NOT_FOUND);
-//                response.getWriter().write("{\"error\":\"Parent path '/data' does not exist\"}");
-//            }else{
-//                Node parentNode = parentResource.adaptTo(Node.class);
-//
-//                // check if a node already exists
-//                Resource baseResource = resourceResolver.getResource("/data/" + nodeName);
-//                if (baseResource != null){
-//                    Node existingNode = baseResource.adaptTo(Node.class);
-//                    if (existingNode != null) {
-//                        LOGGER.info("parent node (/data) successfully adapted to a Node class!");
-//                        existingNode.setProperty("customProperty1", customProperty1);
-//                        existingNode.setProperty("customProperty2", customProperty2);
-//
-//                        // Save changes
-//                        resourceResolver.commit();
-//
-//                        response.setStatus(SlingHttpServletResponse.SC_OK);
-//                        response.setContentType("application/json");
-//                        response.getWriter().write("{\"success\":\"Node updated successfully\"}");
-//                    }
-//                }else{
-//                    if (parentNode != null){
-//                        // Create the new node
-//                        Node newNode = parentNode.addNode(nodeName, JcrConstants.NT_UNSTRUCTURED);
-//                        newNode.setProperty("customProperty1", customProperty1);
-//                        newNode.setProperty("customProperty2", customProperty2);
-//
-//                        // Save changes
-//                        resourceResolver.commit();
-//
-//                        response.setStatus(SlingHttpServletResponse.SC_OK);
-//                        response.setContentType("application/json");
-//                        response.getWriter().write("{\"success\":\"Node created successfully\"}");
-//                    }
-//                }
-//            }
-//
-//        } catch (Exception e) {
-//            response.setStatus(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR);
-//            response.getWriter().write("{\"error\":\"" + e.getMessage() + "\"}");
-//        }
-
     }
 
     private String escapeJson(String input) {
