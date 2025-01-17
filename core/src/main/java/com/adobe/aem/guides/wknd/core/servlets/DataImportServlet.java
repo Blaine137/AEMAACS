@@ -1,80 +1,103 @@
 package com.adobe.aem.guides.wknd.core.servlets;
 
-import com.adobe.granite.workflow.WorkflowSession;
-import com.adobe.granite.workflow.exec.WorkflowData;
-import com.adobe.granite.workflow.model.WorkflowModel;
+import com.adobe.aem.guides.wknd.core.utils.ResourceResolverUtils;
+import com.day.cq.commons.jcr.JcrConstants;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.commons.logging.Log;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.servlets.HttpConstants;
+import org.apache.sling.api.resource.Resource;
+import org.apache.sling.api.resource.ResourceResolver;
+import org.apache.sling.api.resource.ResourceResolverFactory;
 import org.apache.sling.api.servlets.SlingAllMethodsServlet;
-import org.apache.sling.servlets.annotations.SlingServletResourceTypes;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
+import org.osgi.framework.Constants;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.jcr.Node;
 import javax.servlet.Servlet;
-import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
 
-@Component(service = Servlet.class, property = {
-        "sling.servlet.paths=/data", // Define a path-based servlet
-        "sling.servlet.methods=POST"
-})
+@Component(service = Servlet.class,
+        property = {
+                Constants.SERVICE_DESCRIPTION + "=Test Path Servlet",
+                "sling.servlet.paths=/bin/import", // Define a path-based servlet
+                "sling.servlet.methods=GET"
+        })
 public class DataImportServlet extends SlingAllMethodsServlet {
-    private static final Logger LOG = LoggerFactory.getLogger(DataImportServlet.class);
 
-    // Workflow model path - adjust to match your workflow
-    private static final String FACILITY_IMPORT_WORKFLOW_PATH = "/var/workflow/models/facility-import";
-
+    private static final Logger LOGGER = LoggerFactory.getLogger(TestPathServlet.class);
+    private static final String SERVICE_USER_NAME = "data-import-service-user";
+    private static final String BASE_PATH = "/data";
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+    private boolean isUpdate = false;
+    @Reference
+    private ResourceResolverFactory resourceResolverFactory;
     @Override
-    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response)
-            throws IOException {
-        try {
-            // Read JSON from request body
-            StringBuilder jsonBuilder = new StringBuilder();
-            try (BufferedReader reader = request.getReader()) {
-                String line;
-                while ((line = reader.readLine()) != null) {
-                    jsonBuilder.append(line);
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+        InputStream inputStream = request.getInputStream();
+        String jsonString = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
+        JsonNode jsonArray = objectMapper.readTree(jsonString);
+
+        if (jsonArray.isArray()) {
+            LOGGER.info("is an array!");
+
+            try (ResourceResolver resourceResolver = ResourceResolverUtils.getServiceUserResolver(resourceResolverFactory, SERVICE_USER_NAME)) {
+                Iterator<JsonNode> iterator = jsonArray.iterator();
+                while (iterator.hasNext()) {
+                    JsonNode jsonNode = iterator.next();
+                    String nodeName = jsonNode.has("nodeName") ? jsonNode.get("nodeName").asText() : null;
+                    String location = jsonNode.has("location") ? jsonNode.get("location").asText() : null;
+                    String pagePath = jsonNode.has("pagePath") ? jsonNode.get("pagePath").asText() : null;
+                    LOGGER.info("nodeName is: {}", nodeName);
+                    if(location != null){
+                        String nodePath = BASE_PATH + "/" + nodeName;
+                        Resource currentResource = resourceResolver.getResource(nodePath);
+                        if(currentResource != null){
+                            LOGGER.info("current resource is not null: {}", nodePath);
+                            Node currentNode = currentResource.adaptTo(Node.class);
+                            if(currentNode != null){
+                                isUpdate = true;
+                                currentNode.setProperty("location", location);
+                                currentNode.setProperty("pagePath", pagePath);
+                            }
+                        }else{
+                            Resource parentResource = resourceResolver.getResource(BASE_PATH);
+                            if(parentResource != null){
+                                Node parentNode = parentResource.adaptTo(Node.class);
+                                if(parentNode != null){
+                                    Node newNode = parentNode.addNode(nodeName, JcrConstants.NT_UNSTRUCTURED);
+                                    newNode.setProperty("location", location);
+                                    newNode.setProperty("pagePath", pagePath);
+
+                                    // Save changes
+                                    resourceResolver.commit();
+                                }
+                            }
+                        }
+                    }
                 }
+
+                response.setStatus(SlingHttpServletResponse.SC_OK);
+                response.setContentType("application/json");
+                if(isUpdate){
+                    response.getWriter().write("{\"success\":\"Node updated successfully\"}");
+                }else{
+                    response.getWriter().write("{\"success\":\"Node created successfully\"}");
+                }
+            }catch(Exception e){
+                LOGGER.info("error while getting or using resource resolver: {}", e.getMessage());
             }
 
-//            // Get Workflow Session
-//            WorkflowSession workflowSession = request.getResourceResolver()
-//                    .adaptTo(WorkflowSession.class);
-//
-//            if (workflowSession == null) {
-//                response.sendError(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-//                        "Unable to obtain Workflow Session");
-//                return;
-//            }
-//
-//            // Load Workflow Model
-//            WorkflowModel workflowModel = workflowSession.getModel(FACILITY_IMPORT_WORKFLOW_PATH);
-//
-//            if (workflowModel == null) {
-//                response.sendError(SlingHttpServletResponse.SC_NOT_FOUND,
-//                        "Workflow model not found: " + FACILITY_IMPORT_WORKFLOW_PATH);
-//                return;
-//            }
-//
-//            // Create Workflow Data
-//            WorkflowData workflowData = workflowSession.newWorkflowData(
-//                    "JCR_PATH", // or "JSON" depending on your workflow configuration
-//                    jsonBuilder.toString()
-//            );
-//
-//            // Start Workflow
-//            workflowSession.startWorkflow(workflowModel, workflowData);
 
-            // Send success response
-            response.setStatus(SlingHttpServletResponse.SC_ACCEPTED);
-            response.getWriter().write("Facility import workflow initiated successfully");
-
-        } catch (Exception e) {
-            LOG.error("Error initiating facility import workflow", e);
-            response.sendError(SlingHttpServletResponse.SC_INTERNAL_SERVER_ERROR,
-                    "Error initiating workflow: " + e.getMessage());
+            LOGGER.info("after reading array");
         }
+
     }
 }
