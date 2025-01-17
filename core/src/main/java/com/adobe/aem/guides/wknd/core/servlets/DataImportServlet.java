@@ -40,7 +40,7 @@ public class DataImportServlet extends SlingAllMethodsServlet {
     @Reference
     private ResourceResolverFactory resourceResolverFactory;
     @Override
-    protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
+    protected void doPost(SlingHttpServletRequest request, SlingHttpServletResponse response) throws IOException {
         InputStream inputStream = request.getInputStream();
         String jsonString = new String(inputStream.readAllBytes(), StandardCharsets.UTF_8);
         JsonNode jsonArray = objectMapper.readTree(jsonString);
@@ -99,18 +99,5 @@ public class DataImportServlet extends SlingAllMethodsServlet {
             LOGGER.info("after reading array");
         }
 
-    }
-
-    private String escapeJson(String input) {
-        if (input == null) {
-            return null;
-        }
-        return input.replace("\"", "\\\"")
-                .replace("\\", "\\\\")
-                .replace("\b", "\\b")
-                .replace("\f", "\\f")
-                .replace("\n", "\\n")
-                .replace("\r", "\\r")
-                .replace("\t", "\\t");
     }
 }
