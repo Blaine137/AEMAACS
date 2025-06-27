@@ -1,0 +1,7 @@
+<div data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CardImageModel">
+    <div data-sly-test="${model.image}">
+        <img src="${model.image @ context='uri'}" alt="${model.imageAlt || 'Hero Image'}" />
+    </div>
+    <p data-sly-test="${model.headline}">${model.headline}</p>
+    <p data-sly-test="${model.textField}">${model.textField}</p>
+</div>
