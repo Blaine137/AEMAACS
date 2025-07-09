@@ -15,19 +15,19 @@ public class CardImageModel {
     final protected static String RESOURCE_TYPE="wknd/components/card-image";
 
     @ValueMapValue
-    @Default(values="No resourceType")
+//    @Default(values="No resourceType")
     private String textField;
 
     @ValueMapValue
-    @Default(values="No resourceType")
+//    @Default(values="No resourceType")
     private String image;
 
     @ValueMapValue
-    @Default(values="No resourceType")
+//    @Default(values="No resourceType")
     private String imageAlt;
 
     @ValueMapValue
-    @Default(values="No resourceType")
+//    @Default(values="No resourceType")
     private String headline;
 
     public String getImage(){

@@ -1,0 +1,82 @@
+.card-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 100%;
+  margin: 1.5rem auto;
+  padding: 1.5rem;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+  }
+
+  .card-image_image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: 0.75rem;
+    margin-bottom: 1rem;
+  }
+
+  .card-image_headline {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .card-image_text {
+    font-size: 1rem;
+    color: #4a4a4a;
+    text-align: center;
+    line-height: 1.6;
+  }
+
+  // Small devices (phones)
+  @media (max-width: 599px) {
+    padding: 1.25rem;
+
+    .card-image_headline {
+      font-size: 1.25rem;
+    }
+
+    .card-image_text {
+      font-size: 0.95rem;
+    }
+  }
+
+  // Medium devices (tablets)
+  @media (min-width: 600px) and (max-width: 1023px) {
+    padding: 2rem;
+    max-width: 500px;
+
+    .card-image_headline {
+      font-size: 1.75rem;
+    }
+
+    .card-image_text {
+      font-size: 1.05rem;
+    }
+  }
+
+  // Large devices (desktops and up)
+  @media (min-width: 1024px) {
+    padding: 2.5rem;
+    max-width: 600px;
+
+    .card-image_headline {
+      font-size: 2rem;
+    }
+
+    .card-image_text {
+      font-size: 1.125rem;
+    }
+  }
+}
