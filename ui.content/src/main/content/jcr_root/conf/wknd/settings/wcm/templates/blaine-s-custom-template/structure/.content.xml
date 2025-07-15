@@ -3,7 +3,7 @@
     jcr:primaryType="cq:Page">
     <jcr:content
         cq:deviceGroups="[mobile/groups/responsive]"
-        cq:lastModified="{Date}2025-06-14T17:25:23.525-04:00"
+        cq:lastModified="{Date}2025-07-15T16:16:29.321-04:00"
         cq:lastModifiedBy="admin"
         cq:template="/conf/wknd/settings/wcm/templates/blaine-s-custom-template"
         jcr:primaryType="cq:PageContent"
@@ -23,13 +23,6 @@
                 jcr:lastModifiedBy="admin"
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="apps/wknd/components/card-image"/>
-            <card_image_1272575566
-                jcr:created="{Date}2025-06-14T17:25:23.489-04:00"
-                jcr:createdBy="admin"
-                jcr:lastModified="{Date}2025-06-14T17:25:23.489-04:00"
-                jcr:lastModifiedBy="admin"
-                jcr:primaryType="nt:unstructured"
-                sling:resourceType="wknd/components/card-image"/>
             <container
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wknd/components/container"
