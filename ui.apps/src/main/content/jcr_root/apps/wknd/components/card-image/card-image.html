@@ -1,10 +1,10 @@
-<div class="card-image-container" data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CardImageModel">
+<div class="card-image-container" data-cmp-is="card-image" data-sly-use.model="com.adobe.aem.guides.wknd.core.models.CardImageModel">
     <div data-sly-test="${model.image}">
-        <img class="card-image_image" src="${model.image @ context='uri'}" alt="${model.imageAlt || 'Hero Image'}" />
+        <img data-cmp-is="card-image_iamge" class="card-image_image" src="${model.image @ context='uri'}" alt="${model.imageAlt || 'Hero Image'}" />
     </div>
     <div>
         <h4 data-cmp-is="card-image_headline" class="card-image_headline" data-sly-test="${model.headline}">${model.headline}</h4>
-        <p class="card-image_text" data-sly-test="${model.textField}">${model.textField}</p>
+        <p class="card-image_text" data-cmp-is="card-image_text" data-sly-test="${model.textField}">${model.textField}</p>
     </div>
 </div>
 
