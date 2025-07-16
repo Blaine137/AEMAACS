@@ -22,3 +22,15 @@ require('cypress-terminal-report/src/installLogsCollector')({
     },
     debug: true
 });
+
+before(() => {
+  const baseUrl = Cypress.config('baseUrl');
+
+  // Add your publish server hostname(s) or ports here
+  const isPublishEnv = baseUrl.includes('4503') || baseUrl.includes('publish') || baseUrl.includes('prod');
+
+  if (isPublishEnv) {
+    cy.log('Skipping Cypress tests in publish environment:', baseUrl);
+    Cypress.runner.stop(); // Hard stop — won't run anything
+  }
+});
