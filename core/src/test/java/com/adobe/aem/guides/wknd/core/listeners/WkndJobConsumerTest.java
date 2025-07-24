@@ -1,36 +1,26 @@
 package com.adobe.aem.guides.wknd.core.listeners;
 
 import com.adobe.aem.guides.wknd.core.constants.WkndConstants;
-import com.adobe.aem.guides.wknd.core.listeners.WkndJobConsumer;
-import com.adobe.aem.guides.wknd.core.utils.ResourceUtils;
+
 import io.wcm.testing.mock.aem.junit5.AemContext;
 import io.wcm.testing.mock.aem.junit5.AemContextExtension;
 import org.apache.sling.api.resource.*;
 import org.apache.sling.event.jobs.Job;
 import org.apache.sling.event.jobs.consumer.JobConsumer;
-import org.apache.sling.api.resource.ValueMap;
-import org.apache.sling.testing.resourceresolver.MockResourceResolverFactory;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.junit.jupiter.api.extension.RegisterExtension;
 import org.mockito.Mock;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.RepositoryException;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
-//@ExtendWith({MockitoExtension.class})
 @ExtendWith(AemContextExtension.class)
 class WkndJobConsumerTest {
 
@@ -84,8 +74,6 @@ class WkndJobConsumerTest {
 
     @Test
     void testSuccessfulJobProcessing() {
-        log.info("Resource exists at path? {}", context.resourceResolver().getResource(WkndConstants.BLAINES_CUSTOM_PAGE_PATH) != null);
-        System.out.println("DEBUG - test pageData exists: " + context.resourceResolver().getResource(WkndConstants.BLAINES_CUSTOM_PAGE_PATH) != null);
         JobConsumer.JobResult result = jobConsumer.process(job);
         log.info("Testing result is {}", result);
         // Validate the result is OK
