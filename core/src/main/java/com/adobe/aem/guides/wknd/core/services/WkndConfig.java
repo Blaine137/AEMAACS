@@ -15,6 +15,13 @@ public @interface WkndConfig {
             description = "Enter Dynamic Value Here",
             type = AttributeType.STRING
     )
-    String getDynamicValue() default "Value coming from job!";
+    String getDynamicValue() default "Value coming from osgi config, current date is: ";
+
+    @AttributeDefinition(
+            name = "Cron Expression From Config",
+            description = "Enter Cron Expression Here",
+            type = AttributeType.STRING
+    )
+    String getCronExpression() default "0 0/15 * * * ?";
 
 }

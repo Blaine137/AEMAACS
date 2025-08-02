@@ -8,14 +8,20 @@ import org.osgi.service.metatype.annotations.Designate;
 @Designate(ocd = WkndConfig.class)
 public class WkndConfigService {
 
-    private String configValue;
+    private String dynamicValue;
+    private String cronExpression;
 
     @Activate
     public void start(WkndConfig config) {
-        this.configValue = config.getDynamicValue();
+        this.dynamicValue = config.getDynamicValue();
+        this.cronExpression = config.getCronExpression();
     }
 
-    public String getConfigValue() {
-        return configValue;
+    public String getDynamicValue() {
+        return dynamicValue;
+    }
+
+    public String getCronExpression(){
+        return cronExpression;
     }
 }
