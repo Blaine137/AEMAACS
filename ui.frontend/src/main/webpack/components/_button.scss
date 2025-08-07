@@ -1,4 +1,55 @@
-.cmp-button {}
-.cmp-button__text {}
-.cmp-button__icon {}
-//.cmp-button__icon--myIcon {}
+/*only target buttons inside a container*/
+.cmp-container .cmp-button {
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #000;
+  background-color: #ffcc00;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  overflow: hidden;
+  z-index: 0;
+
+  transition: color 0.5s ease;
+
+  &__text {
+    display: inline-block;
+    position: relative;
+    z-index: 2;
+  }
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: #ffffff;
+    transition: width 0.6s ease, height 0.6s ease;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  &:hover::before {
+    width: 200%;
+    height: 500%;
+  }
+
+  &:hover {
+    color: #000;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  &:focus {
+    outline: 2px solid #fff176;
+    outline-offset: 2px;
+  }
+}
