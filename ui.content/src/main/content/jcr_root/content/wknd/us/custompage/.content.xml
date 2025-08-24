@@ -68,6 +68,8 @@
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wknd/components/customaccordion"
                     headingElement="h2"
+                    customHeadline="Custom Accordion"
+                    enabledCustomHeadline="yes"
                     singleExpansion="false">
                     <item_1755434308166
                         cq:panelTitle="Panel 1"

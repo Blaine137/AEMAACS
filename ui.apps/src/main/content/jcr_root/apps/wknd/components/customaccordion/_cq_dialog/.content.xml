@@ -3,7 +3,7 @@
     jcr:primaryType="nt:unstructured"
     jcr:title="Custom Accordion"
     sling:resourceType="cq/gui/components/authoring/dialog"
-    extraClientlibs="[core.wcm.components.commons.editor.dialog.childreneditor.v1,core.wcm.components.accordion.v1.editor]"
+    extraClientlibs="[core.wcm.components.commons.editor.dialog.childreneditor.v1,core.wcm.components.accordion.v1.editor,wknd.custom-accordion-authoring]"
     helpPath="https://www.adobe.com/go/aem_cmp_accordion_v1"
     trackingFeature="core-components:accordion:v1">
     <content
@@ -119,6 +119,58 @@
                             </columns>
                         </items>
                     </properties>
+                    <customheadline
+                            jcr:primaryType="nt:unstructured"
+                            jcr:title="Custom Headline"
+                            sling:resourceType="granite/ui/components/coral/foundation/container"
+                            margin="{Boolean}true">
+                        <items jcr:primaryType="nt:unstructured">
+                            <columns
+                                    jcr:primaryType="nt:unstructured"
+                                    sling:resourceType="granite/ui/components/coral/foundation/fixedcolumns"
+                                    margin="{Boolean}true">
+                                <items jcr:primaryType="nt:unstructured">
+                                    <column
+                                            jcr:primaryType="nt:unstructured"
+                                            sling:resourceType="granite/ui/components/coral/foundation/container">
+                                        <items jcr:primaryType="nt:unstructured">
+                                            <enableCustomHeadline
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/select"
+                                                    fieldDescription="Enable custom headline for the accordion component."
+                                                    fieldLabel="Enable Custom Headline"
+                                                    name="./enableCustomHeadline">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-accordion-v1-dialog-edit-hook="enableCustomHeadline"/>
+                                                <items jcr:primaryType="nt:unstructured">
+                                                    <no
+                                                            jcr:primaryType="nt:unstructured"
+                                                            selected="{Boolean}true"
+                                                            text="No"
+                                                            value="no"/>
+                                                    <yes
+                                                            jcr:primaryType="nt:unstructured"
+                                                            text="Yes"
+                                                            value="yes"/>
+                                                </items>
+                                            </enableCustomHeadline>
+                                            <customHeadline
+                                                    jcr:primaryType="nt:unstructured"
+                                                    sling:resourceType="granite/ui/components/coral/foundation/form/textfield"
+                                                    fieldDescription="Enter a custom headline for the accordion."
+                                                    fieldLabel="Custom Headline"
+                                                    name="./customHeadline">
+                                                <granite:data
+                                                        jcr:primaryType="nt:unstructured"
+                                                        cmp-accordion-v1-dialog-field="customHeadline"/>
+                                            </customHeadline>
+                                        </items>
+                                    </column>
+                                </items>
+                            </columns>
+                        </items>
+                    </customheadline>
                 </items>
             </tabs>
         </items>
