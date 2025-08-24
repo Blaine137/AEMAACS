@@ -2,7 +2,7 @@
 <jcr:root xmlns:jcr="http://www.jcp.org/jcr/1.0" xmlns:nt="http://www.jcp.org/jcr/nt/1.0" xmlns:cq="http://www.day.com/jcr/cq/1.0" xmlns:sling="http://sling.apache.org/jcr/sling/1.0"
     jcr:primaryType="cq:Page">
     <jcr:content
-        cq:lastModified="{Date}2025-07-15T16:16:52.424-04:00"
+        cq:lastModified="{Date}2025-08-22T19:35:24.274-04:00"
         cq:lastModifiedBy="admin"
         cq:template="/conf/wknd/settings/wcm/templates/blaine-s-custom-template"
         jcr:primaryType="cq:PageContent"
@@ -16,23 +16,6 @@
                 jcr:primaryType="nt:unstructured"
                 sling:resourceType="wknd/components/container"
                 layout="responsiveGrid">
-                <title
-                    jcr:created="{Date}2025-01-06T18:54:43.928-05:00"
-                    jcr:createdBy="admin"
-                    jcr:lastModified="{Date}2025-01-06T18:55:25.315-05:00"
-                    jcr:lastModifiedBy="admin"
-                    jcr:primaryType="nt:unstructured"
-                    jcr:title="Page Created Using Blaine's Custom Template"
-                    sling:resourceType="wknd/components/title"
-                    linkTarget="_self"
-                    type="h1">
-                    <cq:responsive jcr:primaryType="nt:unstructured">
-                        <default
-                            jcr:primaryType="nt:unstructured"
-                            offset="0"
-                            width="12"/>
-                    </cq:responsive>
-                </title>
                 <card_image
                     jcr:created="{Date}2025-07-15T16:16:52.419-04:00"
                     jcr:createdBy="admin"
@@ -40,7 +23,67 @@
                     jcr:lastModifiedBy="admin"
                     jcr:primaryType="nt:unstructured"
                     sling:resourceType="wknd/components/card-image"/>
+                <featuredheadline
+                    jcr:created="{Date}2025-08-04T15:41:21.610-04:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2025-08-05T21:08:07.114-04:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    jcr:title="Headline not coming from the page"
+                    sling:resourceType="wknd/components/featuredheadline"
+                    id="123"
+                    linkTarget="_blank"
+                    linkURL="/content/wknd/us/BlainesHomePage"
+                    subHeadline="Custom Sub Headline"
+                    type="h1"/>
+                <container
+                    jcr:created="{Date}2025-08-06T10:53:45.708-04:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2025-08-11T15:06:36.615-04:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wknd/components/container"
+                    accessibilityLabel="container for button component and any other custom components"
+                    id="123"
+                    layout="responsiveGrid"
+                    roleAttribute="contain components">
+                    <button
+                        jcr:created="{Date}2025-08-06T10:53:50.774-04:00"
+                        jcr:createdBy="admin"
+                        jcr:lastModified="{Date}2025-08-06T10:54:14.407-04:00"
+                        jcr:lastModifiedBy="admin"
+                        jcr:primaryType="nt:unstructured"
+                        jcr:title="Click Me"
+                        sling:resourceType="wknd/components/button"
+                        icon=">"
+                        linkTarget="_self"
+                        linkURL="/content/wknd/us/en"/>
+                </container>
+                <customaccordion
+                    cq:styleIds="[1755626385547]"
+                    jcr:created="{Date}2025-08-17T08:38:11.620-04:00"
+                    jcr:createdBy="admin"
+                    jcr:lastModified="{Date}2025-08-21T09:01:56.443-04:00"
+                    jcr:lastModifiedBy="admin"
+                    jcr:primaryType="nt:unstructured"
+                    sling:resourceType="wknd/components/customaccordion"
+                    headingElement="h2"
+                    customHeadline="Custom Accordion"
+                    enabledCustomHeadline="yes"
+                    singleExpansion="false">
+                    <item_1755434308166
+                        cq:panelTitle="Panel 1"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wknd/components/button"/>
+                    <item_1755434319684
+                        cq:panelTitle="Panel 2"
+                        jcr:primaryType="nt:unstructured"
+                        sling:resourceType="wknd/components/button"/>
+                </customaccordion>
             </container>
         </root>
     </jcr:content>
+    <pageData
+        jcr:primaryType="nt:unstructured"
+        dataFromJob="Value coming from osgi config, current date is: "/>
 </jcr:root>
